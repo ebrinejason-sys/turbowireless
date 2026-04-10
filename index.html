@@ -7,569 +7,7 @@
 <title>Turbonet Wireless Uganda | Ultra Speeds, Ultimate Reliability</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" href="styles.css"> -->
-<style>
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --blue: #0066cc;
-    --blue-dark: #004fa3;
-    --blue-light: #e6f0ff;
-    --green: #28a745;
-    --green-dark: #1e7e34;
-    --orange: #fd7e14;
-    --red: #dc3545;
-    --text: #2c3e50;
-    --text-light: #6c757d;
-    --white: #ffffff;
-    --bg: #f8f9fa;
-    --border: #dee2e6;
-    --shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    line-height: 1.6;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 70px;
-  }
-
-  .nav-logo img { height: 48px; }
-
-  .nav-links { display: flex; gap: 6px; align-items: center; list-style: none; }
-  .nav-links a {
-    text-decoration: none; color: var(--text);
-    font-size: 0.82rem; font-weight: 500;
-    padding: 6px 10px; border-radius: 6px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .nav-links a:hover { background: var(--blue-light); color: var(--blue); }
-  .nav-links .btn-install {
-    background: var(--blue); color: var(--white);
-    padding: 8px 14px; border-radius: 20px; font-weight: 600;
-  }
-  .nav-links .btn-install:hover { background: var(--blue-dark); color: var(--white); }
-
-  .hamburger {
-    display: none; flex-direction: column; gap: 5px;
-    cursor: pointer; background: none; border: none; padding: 4px;
-  }
-  .hamburger span {
-    display: block; width: 25px; height: 2px;
-    background: var(--text); border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  .mobile-menu {
-    display: none; position: fixed; top: 70px; left: 0;
-    width: 100%; background: var(--white);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    z-index: 999; padding: 16px 5% 24px;
-    flex-direction: column; gap: 4px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    text-decoration: none; color: var(--text);
-    font-size: 0.9rem; font-weight: 500;
-    padding: 10px 14px; border-radius: 8px;
-    transition: background 0.2s;
-  }
-  .mobile-menu a:hover { background: var(--blue-light); color: var(--blue); }
-  .mobile-menu .btn-install {
-    background: var(--blue); color: var(--white) !important;
-    text-align: center; font-weight: 600; margin-top: 8px;
-    border-radius: 20px;
-  }
-
-  /* ── HERO ── */
-  #home {
-    padding-top: 70px;
-    background: linear-gradient(135deg, #003580 0%, #0066cc 50%, #0099ff 100%);
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
-    position: relative; overflow: hidden;
-  }
-  #home::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  .hero-content { position: relative; z-index: 1; padding: 40px 5%; max-width: 800px; }
-  .hero-content h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    font-weight: 800; color: var(--white);
-    line-height: 1.15; margin-bottom: 20px;
-  }
-  .hero-content p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: rgba(255,255,255,0.88); margin-bottom: 36px;
-  }
-  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 28px; border-radius: 30px;
-    font-weight: 600; font-size: 0.95rem; text-decoration: none;
-    cursor: pointer; border: none; transition: all 0.25s;
-  }
-  .btn-white { background: var(--white); color: var(--blue); }
-  .btn-white:hover { background: #e6f0ff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-  .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.8); }
-  .btn-outline-white:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
-  .btn-blue { background: var(--blue); color: var(--white); }
-  .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
-  .btn-green { background: var(--green); color: var(--white); }
-  .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
-  .btn-orange { background: var(--orange); color: var(--white); }
-  .btn-orange:hover { background: #e86c00; transform: translateY(-2px); }
-
-  /* ── SECTION COMMON ── */
-  section { padding: 80px 5%; }
-  .section-title {
-    text-align: center; margin-bottom: 50px;
-  }
-  .section-title h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 700; color: var(--text);
-    margin-bottom: 10px;
-  }
-  .section-title p { color: var(--text-light); font-size: 1rem; }
-  .section-title .underline {
-    width: 60px; height: 4px; background: var(--blue);
-    margin: 12px auto 0; border-radius: 2px;
-  }
-
-  /* ── PACKAGES PREVIEW (HERO) ── */
-  #home .plans-preview {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 20px; padding: 40px 30px;
-    margin-top: 60px; max-width: 1100px; width: 100%;
-  }
-  #home .plans-preview h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem; font-weight: 700; color: var(--white);
-    margin-bottom: 30px; text-align: center;
-  }
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  .plan-card {
-    background: var(--white); border-radius: 16px;
-    padding: 28px 20px; text-align: center;
-    transition: transform 0.25s, box-shadow 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .plan-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
-  .plan-card.popular::before {
-    content: 'Popular';
-    position: absolute; top: 12px; right: -22px;
-    background: var(--orange); color: white;
-    font-size: 0.72rem; font-weight: 700; padding: 4px 28px;
-    transform: rotate(45deg);
-  }
-  .plan-speed {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem; font-weight: 800; color: var(--blue);
-    margin-bottom: 4px;
-  }
-  .plan-price {
-    font-size: 1.15rem; font-weight: 700; color: var(--text);
-    margin-bottom: 16px;
-  }
-  .plan-price span { font-size: 0.78rem; color: var(--text-light); font-weight: 400; }
-  .plan-features { list-style: none; margin-bottom: 20px; }
-  .plan-features li {
-    padding: 5px 0; font-size: 0.82rem; color: var(--text-light);
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .plan-features li::before { content: '✓ '; color: var(--green); font-weight: 700; }
-  .plan-card .btn { width: 100%; justify-content: center; font-size: 0.85rem; padding: 10px; }
-
-  /* ── STATS ── */
-  .stats-bar {
-    background: var(--blue); padding: 40px 5%;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 30px; text-align: center;
-  }
-  .stat-item { color: var(--white); }
-  .stat-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.4rem; font-weight: 800; line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label { font-size: 0.9rem; opacity: 0.85; }
-
-  /* ── PROMO BANNER ── */
-  .promo-banner {
-    background: linear-gradient(135deg, #ff6b35, #f7c948);
-    padding: 50px 5%; text-align: center;
-  }
-  .promo-banner h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 800; color: var(--white); margin-bottom: 14px;
-  }
-  .promo-banner p { color: rgba(255,255,255,0.92); font-size: 1.05rem; margin-bottom: 24px; }
-
-  /* ── PACKAGES SECTION ── */
-  #packages { background: var(--bg); }
-
-  /* HOW IT WORKS */
-  .how-it-works {
-    display: flex; gap: 30px; justify-content: center;
-    flex-wrap: wrap; margin-bottom: 50px;
-  }
-  .step-card {
-    background: var(--white); border-radius: 16px;
-    padding: 28px 24px; text-align: center;
-    flex: 1; min-width: 200px; max-width: 260px;
-    box-shadow: var(--shadow);
-  }
-  .step-num {
-    width: 52px; height: 52px;
-    background: var(--blue); color: var(--white);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800;
-    margin: 0 auto 16px;
-  }
-  .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .step-card p { font-size: 0.85rem; color: var(--text-light); }
-
-  /* DETAIL CARDS */
-  .detail-plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px; margin-top: 40px;
-  }
-  .detail-plan {
-    background: var(--white); border-radius: 16px;
-    padding: 30px 22px; text-align: center;
-    box-shadow: var(--shadow); border: 2px solid transparent;
-    transition: all 0.25s; position: relative; overflow: hidden;
-  }
-  .detail-plan:hover { border-color: var(--blue); transform: translateY(-4px); }
-  .detail-plan.featured { border-color: var(--blue); }
-  .detail-plan.featured::after {
-    content: '⭐ Most Popular';
-    display: block; background: var(--blue); color: white;
-    font-size: 0.75rem; font-weight: 700; padding: 6px;
-    position: absolute; top: 0; left: 0; right: 0;
-    text-align: center;
-  }
-  .detail-plan.featured .plan-speed { margin-top: 30px; }
-
-  /* ── COVERAGE ── */
-  #coverage { background: var(--white); }
-  .coverage-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px; margin-bottom: 40px;
-  }
-  .coverage-card {
-    background: var(--bg); border-radius: 16px;
-    padding: 30px 24px; text-align: center;
-    border-left: 4px solid var(--blue);
-    transition: transform 0.2s;
-  }
-  .coverage-card:hover { transform: translateY(-3px); }
-  .coverage-card .icon { font-size: 2.2rem; margin-bottom: 14px; }
-  .coverage-card h3 { font-weight: 700; margin-bottom: 8px; font-size: 1rem; }
-  .coverage-card p { font-size: 0.85rem; color: var(--text-light); }
-  .coverage-cta {
-    background: var(--blue-light); border-radius: 16px;
-    padding: 40px 30px; text-align: center;
-  }
-  .coverage-cta h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
-  .coverage-cta p { color: var(--text-light); margin-bottom: 20px; }
-
-  /* ── ABOUT ── */
-  #about { background: var(--bg); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; margin-bottom: 50px;
-  }
-  .about-card {
-    background: var(--white); border-radius: 16px;
-    padding: 32px 26px; box-shadow: var(--shadow);
-  }
-  .about-card .icon { font-size: 2.4rem; margin-bottom: 16px; }
-  .about-card h3 { font-weight: 700; margin-bottom: 10px; }
-  .about-card p { font-size: 0.88rem; color: var(--text-light); }
-  .tagline-banner {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-    color: white; border-radius: 16px; padding: 40px 30px;
-    text-align: center; margin-bottom: 50px;
-  }
-  .tagline-banner h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
-  .tagline-banner p { opacity: 0.85; }
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-  }
-  .why-card {
-    background: var(--white); border-radius: 16px;
-    padding: 28px 22px; box-shadow: var(--shadow);
-    border-top: 4px solid var(--blue);
-  }
-  .why-card h4 { font-weight: 700; margin-bottom: 8px; }
-  .why-card p { font-size: 0.85rem; color: var(--text-light); }
-
-  /* ── SUPPORT / FAQ ── */
-  #support { background: var(--white); }
-  .faq-list { max-width: 800px; margin: 0 auto; }
-  .faq-item {
-    border: 1px solid var(--border); border-radius: 12px;
-    margin-bottom: 12px; overflow: hidden;
-  }
-  .faq-q {
-    width: 100%; text-align: left; background: var(--white);
-    border: none; padding: 18px 20px; cursor: pointer;
-    font-family: 'Poppins', sans-serif; font-size: 0.95rem;
-    font-weight: 600; color: var(--text);
-    display: flex; justify-content: space-between; align-items: center;
-    transition: background 0.2s;
-  }
-  .faq-q:hover { background: var(--blue-light); }
-  .faq-q .arrow { font-size: 1.1rem; transition: transform 0.3s; }
-  .faq-q.active { color: var(--blue); }
-  .faq-q.active .arrow { transform: rotate(180deg); }
-  .faq-a {
-    display: none; padding: 0 20px 18px;
-    font-size: 0.88rem; color: var(--text-light); line-height: 1.7;
-  }
-  .faq-a.open { display: block; }
-
-  /* ── PORTAL ── */
-  #portal { background: var(--bg); }
-  .portal-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px; align-items: start;
-    max-width: 960px; margin: 0 auto;
-  }
-  .portal-frame-box {
-    background: var(--white); border-radius: 16px;
-    padding: 30px; box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .portal-frame-box h3 { font-weight: 700; margin-bottom: 6px; font-size: 1.1rem; }
-  .portal-frame-box .open-link {
-    display: block; text-align: right; font-size: 0.78rem;
-    color: var(--blue); margin-bottom: 16px;
-    text-decoration: none;
-  }
-  .portal-img {
-    width: 100%; border-radius: 10px; margin-bottom: 16px;
-    max-height: 220px; object-fit: cover;
-    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-    min-height: 180px; display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; color: var(--blue);
-  }
-  .portal-note {
-    font-size: 0.82rem; color: var(--text-light);
-    background: var(--bg); border-radius: 8px; padding: 12px;
-    margin-bottom: 16px;
-  }
-  .portal-note strong { color: var(--text); }
-  .portal-login-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-  .portal-login-links a {
-    padding: 10px 18px; border-radius: 20px;
-    font-size: 0.85rem; font-weight: 600; text-decoration: none;
-    transition: all 0.2s;
-  }
-  .portal-login-links a.primary { background: var(--blue); color: white; }
-  .portal-login-links a.secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-  .portal-info {
-    background: var(--white); border-radius: 16px;
-    padding: 30px; box-shadow: var(--shadow);
-  }
-  .portal-info h3 { font-weight: 700; margin-bottom: 16px; }
-  .portal-info p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 20px; }
-  .portal-tip {
-    background: var(--blue-light); border-radius: 10px; padding: 14px;
-    font-size: 0.82rem; color: var(--blue);
-  }
-
-  /* ── SPEED TEST ── */
-  #speedtest { background: var(--white); }
-  .speed-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px; align-items: start;
-    max-width: 960px; margin: 0 auto;
-  }
-  .speed-box {
-    background: var(--bg); border-radius: 16px;
-    padding: 28px; box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .speed-box h3 { font-weight: 700; margin-bottom: 6px; }
-  .speed-box .full-link {
-    display: block; font-size: 0.78rem; color: var(--blue); margin-bottom: 16px;
-    text-decoration: none;
-  }
-  .speed-iframe-placeholder {
-    width: 100%; background: #1a1a2e; border-radius: 12px;
-    min-height: 220px; display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px; color: white; margin-bottom: 16px;
-    padding: 20px;
-  }
-  .speed-iframe-placeholder .speed-icon { font-size: 3rem; }
-  .speed-iframe-placeholder p { font-size: 0.85rem; opacity: 0.7; }
-  .speed-iframe-placeholder a {
-    background: var(--blue); color: white; padding: 10px 22px;
-    border-radius: 20px; text-decoration: none; font-size: 0.88rem; font-weight: 600;
-  }
-  .speed-info { background: var(--white); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
-  .speed-info h3 { font-weight: 700; margin-bottom: 16px; }
-  .speed-info p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 20px; }
-  .speed-info .report-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: none; border: 1px solid var(--border);
-    padding: 10px 18px; border-radius: 20px; cursor: pointer;
-    font-size: 0.85rem; font-weight: 600; color: var(--text);
-    text-decoration: none; transition: all 0.2s;
-  }
-  .speed-info .report-btn:hover { border-color: var(--red); color: var(--red); }
-
-  /* ── REFER & EARN ── */
-  #refer { background: var(--bg); }
-  .refer-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px; align-items: start;
-    max-width: 960px; margin: 0 auto;
-  }
-  .form-card {
-    background: var(--white); border-radius: 16px;
-    padding: 30px; box-shadow: var(--shadow);
-  }
-  .form-card h3 { font-weight: 700; margin-bottom: 20px; }
-  .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%; padding: 11px 14px; border: 1px solid var(--border);
-    border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.88rem;
-    transition: border-color 0.2s; outline: none;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
-  }
-  .form-group textarea { resize: vertical; min-height: 80px; }
-  .how-works-card {
-    background: var(--white); border-radius: 16px;
-    padding: 30px; box-shadow: var(--shadow);
-  }
-  .how-works-card h3 { font-weight: 700; margin-bottom: 16px; }
-  .how-works-card ol { padding-left: 20px; }
-  .how-works-card li { font-size: 0.88rem; color: var(--text-light); margin-bottom: 10px; line-height: 1.5; }
-  .tip-box {
-    margin-top: 20px; background: #fff8e6; border-left: 4px solid var(--orange);
-    border-radius: 8px; padding: 14px;
-    font-size: 0.82rem; color: var(--text);
-  }
-
-  /* ── CONTACT ── */
-  #contact { background: var(--white); }
-  #contact > .section-title h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
-  #contact > .section-title p { font-size: 1.05rem; }
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px; align-items: start;
-  }
-  .contact-info-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  .contact-info-card {
-    background: var(--bg); border-radius: 12px; padding: 22px 18px;
-    text-align: center;
-  }
-  .contact-info-card .icon { font-size: 1.8rem; margin-bottom: 10px; }
-  .contact-info-card h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
-  .contact-info-card p { font-size: 0.82rem; color: var(--text-light); }
-  .contact-info-card a { color: var(--blue); text-decoration: none; font-weight: 600; }
-  .emergency-box {
-    background: #fff0f0; border: 1px solid #ffccd0; border-radius: 12px;
-    padding: 20px; margin-top: 18px; text-align: center;
-  }
-  .emergency-box h4 { color: var(--red); font-weight: 700; margin-bottom: 8px; }
-  .emergency-box p { font-size: 0.85rem; color: var(--text-light); }
-  .emergency-box strong { color: var(--text); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #1a1a2e; color: rgba(255,255,255,0.85);
-    padding: 60px 5% 30px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px; margin-bottom: 40px;
-  }
-  .footer-brand p { font-size: 0.85rem; opacity: 0.7; margin-top: 14px; line-height: 1.7; }
-  footer h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem; font-weight: 700;
-    color: white; margin-bottom: 16px;
-  }
-  footer ul { list-style: none; }
-  footer ul li { margin-bottom: 8px; }
-  footer ul li a {
-    color: rgba(255,255,255,0.65); text-decoration: none;
-    font-size: 0.85rem; transition: color 0.2s;
-  }
-  footer ul li a:hover { color: white; }
-  footer ul li span { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 24px; text-align: center;
-    font-size: 0.8rem; color: rgba(255,255,255,0.5);
-  }
-  .footer-bottom a { color: var(--blue); text-decoration: none; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .portal-layout, .speed-layout, .refer-layout, .contact-layout { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .contact-info-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    section { padding: 60px 4%; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .contact-info-grid { grid-template-columns: 1fr; }
-    .hero-btns { flex-direction: column; align-items: center; }
-    .plans-grid { grid-template-columns: 1fr 1fr; }
-    .stats-bar { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 400px) {
-    .plans-grid { grid-template-columns: 1fr; }
-  }
-
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -583,8 +21,10 @@
     <li><a href="#home">Home</a></li>
     <li><a href="#coverage">Coverage</a></li>
     <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#support">Support</a></li>
     <li><a href="#portal">Customer Portal</a></li>
+    <li><a href="#team">Our Team</a></li>
     <li><a href="#speedtest">Speed Test</a></li>
     <li><a href="#refer">Refer &amp; Earn</a></li>
     <li><a href="#contact" class="btn-install">Request Installation</a></li>
@@ -599,18 +39,20 @@
   <a href="#home" onclick="closeMenu()">Home</a>
   <a href="#coverage" onclick="closeMenu()">Coverage</a>
   <a href="#about" onclick="closeMenu()">About Us</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#support" onclick="closeMenu()">Support</a>
   <a href="#portal" onclick="closeMenu()">Customer Portal</a>
+  <a href="#team" onclick="closeMenu()">Our Team</a>
   <a href="#speedtest" onclick="closeMenu()">Speed Test</a>
   <a href="#refer" onclick="closeMenu()">Refer &amp; Earn</a>
   <a href="#contact" class="btn-install" onclick="closeMenu()">Request Installation</a>
 </div>
 
 <!-- HERO -->
-<section id="home">
+<section id="home"> 
   <div style="display:flex;flex-direction:column;align-items:center;width:100%;padding-top:20px;">
     <div class="hero-content">
-      <h1>Turbowireless, Ultimate Reliability.</h1>
+      <h1>Turbonet Wireless Uganda</h1>
       <p>Affordable broadband solutions for homes, businesses, and institutions across 🇺🇬 Uganda</p>
       <div class="hero-btns">
         <a href="#packages" class="btn btn-white">View Packages</a>
@@ -793,22 +235,22 @@
   </div>
   <div class="coverage-grid">
     <div class="coverage-card">
-      <div class="icon">📡</div>
+      <!-- <div class="icon"></div> -->
       <h3>Currently Serving: Chuka, Tharaka Nithi County</h3>
       <p>Reliable fiber connectivity across the Chuka area</p>
     </div>
     <div class="coverage-card">
-      <div class="icon">✅</div>
+      <!-- <div class="icon"></div> -->
       <h3>Currently Covered</h3>
       <p>Internet Kika in every area with reliable fiber connectivity</p>
     </div>
     <div class="coverage-card">
-      <div class="icon">🗺️</div>
+      <!-- <div class="icon"></div> -->
       <h3>Coming Soon</h3>
       <p>Expanding to nearby counties - register your interest today!</p>
     </div>
     <div class="coverage-card">
-      <div class="icon">🤝</div>
+      <!-- <div class="icon"></div> -->
       <h3>Community Focused</h3>
       <p>Prioritizing underserved communities for digital inclusion</p>
     </div>
@@ -829,7 +271,7 @@
   </div>
   <div class="about-grid">
     <div class="about-card">
-      <div class="icon">🎯</div>
+      <div class="icon"></div>
       <h3>Our Mission</h3>
       <p>To deliver affordable, fast, and reliable broadband services across underserved communities in Uganda, bridging the digital divide and empowering individuals, families, and businesses with seamless connectivity.</p>
     </div>
@@ -848,11 +290,11 @@
   </div>
   <div class="why-grid">
     <div class="why-card">
-      <h4>💰 Affordable Packages</h4>
+      <h4> Affordable Packages</h4>
       <p>Competitive pricing designed for local communities with flexible payment options and no hidden fees.</p>
     </div>
     <div class="why-card">
-      <h4>🔒 Reliable Network</h4>
+      <h4> Reliable Network</h4>
       <p>99% uptime guarantee with redundant infrastructure ensuring consistent, uninterrupted connectivity.</p>
     </div>
     <div class="why-card">
@@ -860,11 +302,52 @@
       <p>Professional setup within 2 hours, including router configuration and network optimization.</p>
     </div>
     <div class="why-card">
-      <h4>🧑‍💼 Local Support</h4>
+      <h4>Local Support</h4>
       <p>Dedicated 24/7 customer service with local technicians who understand your community's needs.</p>
     </div>
   </div>
 </section>
+
+<section id="services">
+
+
+  <!-- SERVICES SECTION: Hotspot + TURBOFiBER + Starlink -->
+<section id="services-offer">
+  <div class="section-title"><h2>Our Premium Services</h2><p>High-performance connectivity for every need</p><div class="underline"></div></div>
+  <div class="services-showcase">
+    <!-- Hotspot Services -->
+    <div class="service-card">
+      <div class="service-header"><h3>Hotspot Services</h3><p>Flexible wireless broadband for homes & mobile life</p></div>
+      <div class="service-body">
+        <div class="plan-group">
+          <div class="mini-plan"><div class="speed">8 Mbps</div><div class="price">KES 1,200/month</div><div class="features">Light browsing, social media</div><a href="#contact" class="btn-sm">Request</a></div>
+          <div class="mini-plan"><div class="speed">10 Mbps</div><div class="price">KES 1,500/month</div><div class="features">HD streaming, 2-3 devices</div><a href="#contact" class="btn-sm">Request</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- TURBOFiBER dedicated -->
+    <div class="service-card">
+      <div class="service-header"><h3>🔷 TURBOFiBER</h3><p>Ultra-fast dedicated fiber connections — brand name TURBOFiBER</p></div>
+      <div class="service-body">
+        <div class="plan-group">
+          <div class="mini-plan"><div class="speed">20 Mbps Fiber</div><div class="price">KES 2,500/month</div><div class="features">Work from home, 4K ready</div><a href="#contact" class="btn-sm">Connect</a></div>
+          <div class="mini-plan"><div class="speed">30 Mbps Fiber</div><div class="price">KES 3,000/month</div><div class="features">Business, heavy usage</div><a href="#contact" class="btn-sm">Connect</a></div>
+          <div class="mini-plan"><div class="speed">50 Mbps Fiber</div><div class="price">KES 4,500/month</div><div class="features">Enterprise, cloud services</div><a href="#contact" class="btn-sm">Contact</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- STARLINK INSTALLATIONS -->
+    <div class="service-card">
+      <div class="service-header"><h3>STARLINK INSTALLATIONS</h3><p>Professional Starlink setup & integration — high-speed satellite internet</p></div>
+      <div class="service-body">
+        <p style="margin-bottom: 16px;">We offer full Starlink installation services: equipment sourcing, mounting, alignment, and network configuration for residential & business. Get reliable low-latency internet even in remote areas.</p>
+        <a href="#contact" class="btn btn-blue" style="display:inline-flex;">Request Starlink Installation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+</section>
+
 
 <!-- SUPPORT / FAQ -->
 <section id="support">
@@ -971,6 +454,18 @@
   </div>
 </section>
 
+<!-- TEAM SECTION : each member with photo & role -->
+<section id="team">
+  <div class="section-title"><h2>Meet Our Electrical  Team</h2><p>Dedicated professionals powering your connectivity</p><div class="underline"></div></div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-img"><img src="./images/1.jpeg" alt="team" onerror="this.src='https://ui-avatars.com/api/?background=0D8F81&color=fff&name=Michael'"></div><h3>Kibilige Jimmy</h3><div class="team-role">Chief Technology Officer</div><div class="team-bio">Network architect, 12+ years in ISP infrastructure & fiber optics.</div></div>
+    <div class="team-card"><div class="team-img"><img src="./images/2.jpeg" alt="team" onerror="this.src='https://ui-avatars.com/api/?background=0D8F81&color=fff&name=Grace'"></div><h3>Name 2</h3><div class="team-role">Head of Fiber Operations (TURBOFiBER)</div><div class="team-bio">Specialist in last-mile fiber deployment and high-speed networks.</div></div>
+    <div class="team-card"><div class="team-img"><img src="./images/3.jpeg" alt="team" onerror="this.src='https://ui-avatars.com/api/?background=0D8F81&color=fff&name=David'"></div><h3>Name 3</h3><div class="team-role">Starlink & Wireless Specialist</div><div class="team-bio">Certified Starlink installer, satellite alignment & RF optimization.</div></div>
+    <div class="team-card"><div class="team-img"><img src="./images/1.jpeg" alt="team" onerror="this.src='https://ui-avatars.com/api/?background=0D8F81&color=fff&name=Ruth'"></div><h3>Name 4</h3><div class="team-role">Customer Success Manager</div><div class="team-bio">24/7 support lead, ensuring seamless client experience.</div></div>
+    <!-- <div class="team-card"><div class="team-img"><img src=" alt="team" onerror="this.src='https://ui-avatars.com/api/?background=0D8F81&color=fff&name=John'"></div><h3>Name 5</h3><div class="team-role">Electrical & Infrastructure Lead</div><div class="team-bio">Licensed electrician, power backup & structured cabling expert.</div></div> -->
+  </div>
+</section>
+
 <!-- SPEED TEST -->
 <section id="speedtest">
   <div class="section-title">
@@ -1041,7 +536,7 @@
         <input type="text" id="refFriendLocation" placeholder="Town, estate, or street">
       </div>
       <button class="btn btn-green" style="width:100%;justify-content:center;" onclick="sendReferral()">
-        📲 Send Referral on WhatsApp
+         Send Referral on WhatsApp
       </button>
     </div>
     <div class="how-works-card">
@@ -1058,86 +553,83 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-title">
-    <h2>Get Connected Today</h2>
-    <p>Ready to experience ultra-fast internet? Contact us now!</p>
-    <div class="underline"></div>
+
+<!-- SUPPORT/FAQ -->
+<section id="support">
+  <div class="section-title"><h2>Support Hub</h2><p>Frequently asked questions</p><div class="underline"></div></div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is TURBOFiBER?<span>▼</span></button><div class="faq-a">TURBOFiBER is our premium fiber optic brand delivering ultra-fast dedicated internet for homes & businesses with speeds up to 50Mbps+.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you offer Starlink installation?<span>▼</span></button><div class="faq-a">Yes! We provide complete Starlink installation: hardware procurement, mounting, alignment, and networking. Contact us for a quote.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How to request a service?<span>▼</span></button><div class="faq-a">Simply click "Request Installation" or fill the contact form. All service requests go directly to our official company WhatsApp number for fast response.</div></div>
   </div>
+</section>
+
+<!-- CONTACT & REQUEST SECTION (WhatsApp integration) - FIXED BUTTON -->
+<section id="contact">
+  <div class="section-title"><h2>Request Service / Installation</h2><p>All requests are sent to our company WhatsApp number: <strong>0758 242675</strong></p><div class="underline"></div></div>
   <div class="contact-layout">
     <div class="form-card">
-      <h3>Request Installation</h3>
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="cName" placeholder="Your full name">
-      </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" id="cPhone" placeholder="07XX XXX XXX">
-      </div>
-      <div class="form-group">
-        <label>Location/Address</label>
-        <input type="text" id="cLocation" placeholder="Your location or address">
-      </div>
-      <div class="form-group">
-        <label>Preferred Package</label>
-        <select id="cPackage">
-          <option value="">Select a package</option>
-          <option value="8Mbps">8 Mbps - KES 1,200/month</option>
-          <option value="10Mbps">10 Mbps - KES 1,500/month</option>
-          <option value="20Mbps">20 Mbps - KES 2,500/month</option>
-          <option value="30Mbps">30 Mbps - KES 3,000/month</option>
+      <h3> Service Request Form</h3>
+      <div class="form-group"><label>Full Name *</label><input type="text" id="reqName" placeholder="John Doe"></div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" id="reqPhone" placeholder="07XX XXX XXX"></div>
+      <div class="form-group"><label>Location / Address *</label><input type="text" id="reqLocation" placeholder="Kampala, Ntinda"></div>
+      <div class="form-group"><label>Service Type</label>
+        <select id="reqService">
+          <option value="Hotspot Service">Hotspot Service</option>
+          <option value="TURBOFiBER Fiber">TURBOFiBER (Fiber)</option>
+          <option value="Starlink Installation">Starlink Installation</option>
+          <option value="Electrical Department Support">Electrical Department Support</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Additional Message</label>
-        <textarea id="cMessage" placeholder="Any additional details..."></textarea>
-      </div>
-      <button class="btn btn-blue" style="width:100%;justify-content:center;" onclick="submitRequest()">
-        📩 Submit Request
-      </button>
+      <div class="form-group"><label>Preferred Package / Details</label><textarea id="reqDetails" rows="2" placeholder="e.g., 20 Mbps fiber, Starlink kit needed, electrical wiring..."></textarea></div>
+      <button class="btn btn-blue" style="width:100%;" id="submitRequestBtn"> Send Request via WhatsApp (0758 242675)</button>
+      <p style="font-size:0.7rem; margin-top:12px; text-align:center;"> Your request will be delivered to Turbonet official WhatsApp line. We reply within 4 hours.</p>
     </div>
-
     <div>
+      <div class="contact-info-card">
+        <h4> Official WhatsApp Number</h4>
+        <p style="font-size:1.3rem; font-weight:700;">0758 242675</p>
+        <p>All installation, support, and inquiries go directly to this number.</p>
+        <a href="https://wa.me/256758242675" target="_blank" class="btn btn-green" style="margin-top:12px; display:inline-block;"> Chat on WhatsApp</a>
+      </div>
+      <div class="emergency-box">
+
+        <h4> Emergency Support</h4>
+        <p>For urgent connectivity issues, call us at <strong>0758 242675</strong></p>
+        <!-- <p style="margin-top:6px;">Our technicians are on standby for critical support needs</p> -->
+      </div>
+      <div>
       <div style="margin-bottom:20px;">
         <h3 style="font-weight:700;margin-bottom:20px;">Contact Information</h3>
       </div>
-      <div class="contact-info-grid">
         <div class="contact-info-card">
-          <div class="icon">📞</div>
-          <h4>Call or WhatsApp</h4>
-          <a href="tel:0758242675">0758 242675</a>
-          <!-- <p>Available 24/7 for support and inquiries</p> -->
-        </div>
-        <div class="contact-info-card">
-          <div class="icon">📍</div>
+          <div class="icon"></div>
           <h4>Service Area</h4>
           <p><strong>Internet Kika</strong></p>
           <!-- <p>Expanding to nearby counties soon</p> -->
         </div>
         <div class="contact-info-card">
-          <div class="icon">⏱️</div>
+          <div class="icon">⏱</div>
           <h4>Response Time</h4>
           <p><strong>Within 4 hours</strong></p>
           <!-- <p>Technical support and installation requests</p> -->
         </div>
         <div class="contact-info-card">
-          <div class="icon">✉️</div>
+          <div class="icon"></div>
           <h4>Email Support</h4>
           <a href="mailto:support@turbowireless.co.ke">support@turbowireless
             .co.ke</a>
           <!-- <p>For detailed inquiries and support tickets</p> -->
         </div>
       </div>
-      <div class="emergency-box">
-        <h4>🚨 Emergency Support</h4>
-        <p>For urgent connectivity issues, call us at <strong>0758 242675</strong></p>
-        <!-- <p style="margin-top:6px;">Our technicians are on standby for critical support needs</p> -->
-      </div>
+      
+    </div>
+  </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- FOOTER -->
 <footer>
@@ -1183,80 +675,91 @@
   <div class="footer-bottom">
     <p>© 2026 Turbonet Wireless Uganda. All rights reserved. | Powered by <a href="https://wa.me/254795203468" target="_blank">Atei Devops</a></p>
   </div>
-</footer>
+</footer> 
+
+<script src="script.js"></script>
+
 
 <script>
-  // ── Hamburger ──
+  // Mobile menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-  }
-
-  // ── FAQ ──
-  function toggleFaq(btn) {
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  window.closeMenu = function() { mobileMenu.classList.remove('open'); };
+  
+  // FAQ toggle
+  window.toggleFaq = function(btn) {
     const answer = btn.nextElementSibling;
     const isOpen = answer.classList.contains('open');
-    // Close all
     document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
     document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('active'));
-    // Open clicked if was closed
-    if (!isOpen) {
-      answer.classList.add('open');
-      btn.classList.add('active');
-    }
-  }
-
-  // ── Referral WhatsApp ──
-  function sendReferral() {
-    const yn = document.getElementById('refYourName').value.trim();
-    const yp = document.getElementById('refYourPhone').value.trim();
-    const fn = document.getElementById('refFriendName').value.trim();
-    const fp = document.getElementById('refFriendPhone').value.trim();
-    const fl = document.getElementById('refFriendLocation').value.trim();
-
-    if (!yn || !yp || !fn || !fp) {
-      alert('Please fill in all required fields.');
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('active'); }
+  };
+  
+  // Helper to scroll to contact form
+  window.scrollToRequest = function() {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  };
+  
+  // FIXED: Send service request to WhatsApp number 0758 242675 (format +256758242675)
+  function sendServiceRequestToWhatsApp() {
+    const name = document.getElementById('reqName').value.trim();
+    const phone = document.getElementById('reqPhone').value.trim();
+    const location = document.getElementById('reqLocation').value.trim();
+    const service = document.getElementById('reqService').value;
+    const details = document.getElementById('reqDetails').value.trim();
+    
+    // Validation
+    if (!name || !phone || !location) {
+      alert('Please fill in your Full Name, Phone Number, and Location.');
       return;
     }
-
-    const msg = `Hello turbowireless! I'd like to make a referral.\n\nMy Name: ${yn}\nMy Phone: ${yp}\n\nFriend's Name: ${fn}\nFriend's Phone: ${fp}\nFriend's Location: ${fl || 'Not specified'}`;
-    window.open(`https://wa.me/254795908428?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-
-  // ── Contact WhatsApp ──
-  function submitRequest() {
-    const name = document.getElementById('cName').value.trim();
-    const phone = document.getElementById('cPhone').value.trim();
-    const loc = document.getElementById('cLocation').value.trim();
-    const pkg = document.getElementById('cPackage').value;
-    const msg = document.getElementById('cMessage').value.trim();
-
-    if (!name || !phone || !loc) {
-      alert('Please fill in Name, Phone, and Location.');
+    // Basic phone validation for Uganda (optional)
+    if (phone.length < 9) {
+      alert(' Please enter a valid phone number (e.g., 0758 242675).');
       return;
     }
-
-    const text = `Hello turbowireless! I'd like to request an installation.\n\nName: ${name}\nPhone: ${phone}\nLocation: ${loc}\nPackage: ${pkg || 'Not selected'}\nMessage: ${msg || 'None'}`;
-    window.open(`https://wa.me/254795908428?text=${encodeURIComponent(text)}`, '_blank');
+    
+    // Build rich message for company WhatsApp
+    const message = `🔧 *NEW SERVICE REQUEST - TURBONET* 🔧%0A%0A👤 *Name:* ${name}%0A📞 *Phone:* ${phone}%0A📍 *Location:* ${location}%0A🛜 *Service Type:* ${service}%0A📝 *Details:* ${details || 'Not specified'}%0A%0A⏳ Please contact me for installation. Thank you!`;
+    
+    // Official company WhatsApp number: 0758 242675 (Uganda code 256)
+    const whatsappNumber = "256758242675";  // international format without '+'
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+    
+    // Open WhatsApp chat
+    window.open(whatsappUrl, '_blank');
   }
-
-  // ── Active nav link on scroll ──
-  const sections = document.querySelectorAll('section[id], div[id]');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 90) current = sec.id;
-    });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.style.fontWeight = a.getAttribute('href') === '#' + current ? '700' : '500';
+  
+  // Attach event listener to the submit button after DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const submitBtn = document.getElementById('submitRequestBtn');
+    if (submitBtn) {
+      // Remove any previous listener to avoid duplicates
+      const newBtn = submitBtn.cloneNode(true);
+      submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+      newBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        sendServiceRequestToWhatsApp();
+      });
+    }
+    
+    // Also attach to any "Request" buttons that might call scrollToRequest but we keep original behavior
+    const allRequestBtns = document.querySelectorAll('.btn-sm, .btn-blue');
+    allRequestBtns.forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes('scrollToRequest')) return;
+      if (btn.innerText.includes('Request') || btn.innerText.includes('Get') || btn.innerText.includes('Connect') || btn.innerText.includes('Starlink')) {
+        if (!btn.hasAttribute('data-listener')) {
+          btn.setAttribute('data-listener', 'true');
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      }
     });
   });
 </script>
+
 </body>
 </html>
