@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Ringroad">
+    <meta name="theme-color" content="#FF0000">
+    <meta name="msapplication-navbutton-color" content="#FF0000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FF0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css" type="text/css">
+    <title>STATUS | HOTSPOT</title>
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+        :root {
+            --primary-color: #FF0000;
+            --secondary-color: #000080;
+            --background-color: #f5f5f5;
+            --text-color: #333333;
+            --nav-bg: linear-gradient(135deg, #FF0000, #000080);
+            --border-radius: 8px;
+            --accent-color: #800000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            padding-top: 70px;
+        }
+
+        .app-container {
+            padding-bottom: 60px;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.08);
+            border: 1px solid rgba(255, 0, 0, 0.1);
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #FF0000, #000080);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .status-section {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .status-section:hover {
+            background: linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 0, 128, 0.03));
+            transform: translateX(5px);
+        }
+
+        .status-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .status-value {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-icon {
+            color: var(--primary-color);
+            background: linear-gradient(135deg, #FF0000, #000080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 8px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #FF0000, #000080);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .status-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            color: white;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+
+        .status-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .status-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: var(--nav-bg);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(255, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-brand i {
+            color: white !important;
+        }
+
+        .menu-icon {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FF0000;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            min-width: 200px;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Bottom navigation styles */
+        .toolbar-bottom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .tab-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .tab-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .tab-link i {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .tab-link p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .tab-link:hover,
+        .tab-link.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-card {
+                margin: 0.5rem;
+                padding: 1.5rem;
+            }
+
+            .status-header {
+                margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+            }
+
+            .status-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .status-value {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="#" class="nav-brand">
+            <i class="fas fa-wifi" style="font-size: 24px; color: white;"></i>
+
+        </a>
+        <button class="menu-icon" onclick="toggleMenu()">
+            <img src="img/menu.png" alt="Menu">
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="login.html" class="dropdown-item">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            <a href="dataprice.html" class="dropdown-item">
+                <i class="fas fa-wifi"></i> Plans
+            </a>
+            <a href="status.html" class="dropdown-item">
+                <i class="fas fa-chart-line"></i> Status
+            </a>
+            <a href="tel:+256702501991" class="dropdown-item">
+                <i class="fas fa-phone"></i> Contact
+            </a>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <div class="page page-home page-with-subnavbar">
+            <!-- <div class="toolbar tabbar tabbar-labels toolbar-bottom">
+            <div class="toolbar-bottom">
+                <div class="tab-links">
+                    <a href="login.html" class="tab-link">
+                        <i class="fa fa-user"></i>
+                        <p>Login</p>
+                    </a>
+                    <a href="dataprice.html" class="tab-link active">
+                        <i class="fa fa-wifi"></i>
+                        <p>Plans</p>
+                    </a>
+                    <a href="status.html" class="tab-link">
+                        <i class="fa fa-signal"></i>
+                        <p>Status</p>
+                    </a>
+                </div>
+            </div>
+            </div> -->
+
+            <!-- <div class="page">
+                <div class="navbar navbar-page">
+                    <div class="navbar-inner sliding">
+                        <div class="title text-center">
+                             ELITE HOTSPOT ZONE
+                        </div>
+                    </div>
+                </div> -->
+
+            <div class="page-content">
+                <div class="container">
+                    <div class="status-card text-center welcome-card">
+                        $(if login-by == 'trial')
+                        <h4>Welcome trial user!</h4>
+                        $(elif login-by != 'mac')
+                        <h4>Welcome <strong>$(username)</strong>!</h4>
+                        $(endif)
+                    </div>
+
+                    <!-- <div class="status-card whatsapp-card">
+                            <a href="https://wa.me/256757677075" class="text-white text-decoration-none">
+                                <div class="text-center">
+                                    <i class="fa fa-whatsapp fa-4x"></i>
+                                    <h4 class="mt-3">WhatsApp Chat</h4>
+                                    <p>Tap to chat on WhatsApp with me about your challenges and experience</p>
+                                </div>
+                            </a>
+                        </div> -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="status-card">
+                                <div class="status-header">
+                                    <h2>Connection Status</h2>
+                                    <p>Your current internet usage details</p>
+                                </div>
+
+                                <div class="status-grid">
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-user status-icon"></i>Username
+                                        </div>
+                                        <div class="status-value">$(username)</div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-laptop status-icon"></i>IP Address
+                                        </div>
+                                        <div class="status-value">$(ip)</div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-clock status-icon"></i>Connected Time
+                                        </div>
+                                        <div class="status-value">
+                                            $(if session-time-left)
+                                            $(uptime) / $(session-time-left)
+                                            $(else)
+                                            $(uptime)
+                                            $(endif)
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-database status-icon"></i>Data Usage
+                                        </div>
+                                        <div class="status-value">
+                                            <script>
+                                                function readablizeBytes(bytes) {
+                                                    var s = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+                                                    var e = Math.floor(Math.log(bytes) / Math.log(1024));
+                                                    return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2) + " " + s[e];
+                                                }
+                                                document.write(readablizeBytes($(bytes - out)) + ' / ' + readablizeBytes($(remain - bytes - out)));
+                                            </script>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-cloud-upload status-icon"></i>Uploaded Data
+                                        </div>
+                                        <div class="status-value">$(bytes-in-nice)</div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-cloud-download status-icon"></i>Downloaded Data
+                                        </div>
+                                        <div class="status-value">$(bytes-out-nice)</div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-calendar-alt status-icon"></i>Bundle Expiry
+                                        </div>
+                                        <div class="status-value">
+                                            $(if session-time-left)
+                                            $(session-time-left)
+                                            $(endif)
+                                        </div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-gear status-icon"></i>MAC Address
+                                        </div>
+                                        <div class="status-value">$(mac)</div>
+                                    </div>
+
+                                    <div class="status-section">
+                                        <div class="status-label">
+                                            <i class="fas fa-refresh status-icon"></i>Refresh In
+                                        </div>
+                                        <div class="status-value">$(refresh-timeout)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="#" id="whatsappButton" class="whatsapp-button">
+        <img src="img/whatsapp_icon.png" alt="WhatsApp">
+    </a>
+
+    <script src="js/config.js"></script>
+    <script>
+        // Update WhatsApp button link from config
+        document.addEventListener('DOMContentLoaded', function () {
+            const whatsappButton = document.getElementById('whatsappButton');
+            if (whatsappButton) {
+                whatsappButton.href = `https://wa.me/+256${CONFIG.WHATSAPP_NUMBER}`;
+            }
+        });
+    </script>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Close menu when clicking outside
+        window.addEventListener('click', function (e) {
+            const menu = document.getElementById('dropdownMenu');
+            const menuIcon = document.querySelector('.menu-icon');
+            if (!menuIcon.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Status server
+        var img = new Image();
+        img.onload = function () {
+            document.getElementById("statusServer").innerHTML = '<i class="fa fa-circle online"></i> Server is online!';
+        };
+        img.onerror = function () {
+            var offln = document.querySelector('.rad-dropmenu-item');
+            offln.classList.add('active');
+            document.getElementById("statusServer").innerHTML = '<i class="fa fa-circle offline"></i> Server is offline :(!';
+        };
+        img.src = 'http://ringroad.net/error-image.png';
+
+        // Time left countdown
+        var seconds = '$(session-time-left-secs)';
+        var countDownDate = new Date(Date.now() + seconds * 1000).getTime();
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timeleft").innerHTML = days + "d" + hours + "h" + minutes + "m" + seconds + "s";
+        }, 1000);
+    </script>
+</body>
+
+</html>
