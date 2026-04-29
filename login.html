@@ -875,16 +875,36 @@
       <!-- <p class="wifi-info" align="center">Or come to Decity Courts Offices</p> -->
     </div>
 
-    $(if error)
-    <div id="infoError" class="error-message">
+  
+<button type="button" class="package-btn" onclick="window.location.href='status.html'">
+  Status
+</button>
+
+
+<!-- <button type="button" class="package-btn" onclick="showPaymentDialog('status.html')">
+  Status
+</button>
+
+<script>
+function showPaymentDialog(page) {
+    window.location.href = page;
+}
+</script> -->
+
+
+<!-- 
+    <div id="infoError" class="error-message"><button type="button" class="package-btn" onclick="window.location.href='status.html'">
+  Status
+</button>
+
       <div class="error-message-content">
         <i class="fa fa-exclamation-circle fa-lg"></i>
         <div class="error-message-text"></div>
       </div>
-    </div>
+    </div> -->
 
     <script type="text/javascript">
-      var error = "$(error)";
+      var error = "$(button)";
       var error1 = "user $(username) has reached uptime limit";
       var error2 = "user $(username) has reached traffic limit";
       var error3 = "no valid profile found";
@@ -918,7 +938,7 @@
         }, 300);
       }, CONFIG.ERROR_DISPLAY_TIMEOUT);
     </script>
-    $(endif)
+    <!-- $(endif)// -->
     <!-- Add config.js script -->
     <script src="js/config.js"></script>
     <script>
@@ -1467,7 +1487,7 @@
     </div>
   </div>
 
-  $(if chap-id)
+  <!-- $(if chap-id) -->
   <form name="sendin" action="$(link-login-only)" method="post">
     <input type="hidden" name="username" />
     <input type="hidden" name="password" />
@@ -1503,7 +1523,7 @@
       return false;
     }
   </script>
-  $(endif)
+  <!-- $(endif) -->
   <script>
     var host = window.location.hostname;
     document.title = `Login ${CONFIG.COMPANY_NAME} - ` + host;

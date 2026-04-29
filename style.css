@@ -43,13 +43,13 @@
   .nav-links a {
     text-decoration: none; color: var(--text);
     font-size: 0.82rem; font-weight: 500;
-    padding: 6px 20px; border-radius: 6px;
+    padding: 6px 18px; border-radius: 6px;
     transition: background 0.2s, color 0.2s;
   }
   .nav-links a:hover { background: var(--blue-light); color: var(--blue); }
   .nav-links .btn-install {
     background: var(--blue); color: var(--white);
-    padding: 8px 14px; border-radius: 20px; font-weight: 600;
+    padding: 8px 12px; border-radius: 20px; font-weight: 600;
   }
   .nav-links .btn-install:hover { background: var(--blue-dark); color: var(--white); }
 
